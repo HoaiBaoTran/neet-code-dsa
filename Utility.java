@@ -18,6 +18,17 @@ public class Utility {
         return head;
     }
 
+    public static ListNode createSampleListNode(int start, int end) {
+        ListNode head = new ListNode(start);
+        ListNode curr = head;
+        for (int i = start + 1; i <= end; i++) {
+            ListNode element = new ListNode(i);
+            curr.next = element;
+            curr = curr.next;
+        }
+        return head;
+    }
+
     public static ListNode createCycleListNode() {
         ListNode node1 = new ListNode(1);
         ListNode node2 = new ListNode(2);
