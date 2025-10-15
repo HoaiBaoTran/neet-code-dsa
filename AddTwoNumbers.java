@@ -14,50 +14,18 @@ class Solution {
         ListNode cur = dummy;
         int carry = 0;
 
-        while (l1 != null && l2 != null) {
-            int val = l1.val + l2.val + carry;
-            carry = 0;
-            if (val >= 10) {
-                carry = 1;
-                val -= 10;
-            }
+        while (l1 != null || l2 != null || carry != 0) {
+            int v1 = l1 == null ? 0 : l1.val;
+            int v2 = l2 == null ? 0 : l2.val;
+            int val = v1 + v2 + carry;
+            
+            carry = val / 10;
+            val = val % 10;
 
-            if (dummy.next == null) {
-                dummy.next = new ListNode(val);
-            } else {
-                cur.next = new ListNode(val);
-            }
-            cur = cur.next;
-            l1 = l1.next;
-            l2 = l2.next;
-        }
-
-        while (l1 != null) {
-            int val = l1.val + carry;
-            carry = 0;
-            if (val >= 10) {
-                carry = 1;
-                val -= 10;
-            }
             cur.next = new ListNode(val);
             cur = cur.next;
-            l1 = l1.next;
-        }
-
-        while (l2 != null) {
-            int val = l2.val + carry;
-            carry = 0;
-            if (val >= 10) {
-                carry = 1;
-                val -= 10;
-            }
-            cur.next = new ListNode(val);
-            cur = cur.next;
-            l2 = l2.next;
-        }
-
-        if (carry != 0) {
-            cur.next = new ListNode(carry);
+            l1 = l1 == null ? null : l1.next;
+            l2 = l2 == null ? null : l2.next;
         }
 
         return dummy.next;
