@@ -7,6 +7,17 @@ public class Utility {
         System.out.println();
     }
 
+    public static ListNode createDuplicateValueListNode(int val, int number) {
+        ListNode head = new ListNode(val);
+        ListNode cur = head;
+        while (number > 1) {
+            cur.next = new ListNode(val);
+            cur = cur.next;
+            number--;
+        }
+        return head;
+    }
+
     public static ListNode createSampleListNode() {
         ListNode head = new ListNode(0);
         ListNode curr = head;
