@@ -7,30 +7,22 @@ class Solution {
     }
 
     public static Node copyRandomList(Node head) {
-        Node dummy = new Node(-1);
-        Node curr = head;
-
         Map<Node, Node> map = new HashMap<>();
 
+        Node curr = head;
         while (curr != null) {
-            Node tmp = new Node(curr.val);
-            if (dummy.next == null) {
-                dummy.next = tmp;
-            }
-            map.put(curr, tmp);
+            map.put(curr, new Node(curr.val));
             curr = curr.next;
-            tmp.next = curr;
-            tmp = tmp.next;
         }
 
         curr = head;
-        Node copy = dummy.next;
         while (curr != null) {
-            copy.random = map.get(curr.random);
-            copy = copy.random;
-            curr = curr.random;
+            Node tmp = map.get(curr);
+            tmp.next = map.get(curr.next);
+            tmp.random = map.get(curr.random);
+            curr = curr.next;
         }
 
-        return dummy.next;
+        return map.get(head);
     }
 }
