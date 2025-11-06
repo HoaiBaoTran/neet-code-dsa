@@ -10,11 +10,13 @@ class Solution:
         while curr:
             new_list_node = Node(curr.val)
             
-            if curr.next in map:
-                new_list_node.next = map[curr.next]
+            if curr.next not in map:
+                next_node = Node(curr.next.val)
+                map[curr.next] = next_node
                 
-            if curr.random in map:
-                new_list_node.random = map[curr.random]
+            if curr.next not in map:
+                random_node = Node(curr.random.val)
+                map[curr.random] = random_node
                 
             map[curr] = new_list_node
             curr = curr.next
