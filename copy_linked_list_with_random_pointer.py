@@ -16,7 +16,7 @@ class Solution:
                 
             if curr.next not in map:
                 random_node = Node(curr.random.val)
-                map[curr.random] = random_node
+                map[curr.random] = random_node  
                 
             map[curr] = new_list_node
             curr = curr.next
